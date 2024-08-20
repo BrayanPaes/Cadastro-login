@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Login</title>
+</head>
+<body>
+    <script>
+      
+
+    $(document).ready(function(){
+        $("button").click(function(){
+            var login = $('#login').val();
+            var senha = $('#senha').val();
+            
+            $.ajax ({
+                url: "login.php",
+                type: "POST",
+                data: "login="+login+"&senha="+senha,
+                dataType: "html",
+                success: function(resposta) {
+                    if (resposta == 1) {
+                        window.location.href = './formulario.html';
+                    }else if (resposta == 0) {
+                        alert("Login ou senha incorretos");
+                    }
+                },
+               
+            });
+        });
+    });
+    </script>
+
+    <form>
+        LOGIN <input type="text" id="login" name="login"><br>
+        SENHA <input type="password" id="senha" name="senha"><br>
+        
+        <button type="button">Enviar</button>
+    </form>
+    <p></p>
+</body>
+</html>
